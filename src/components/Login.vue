@@ -43,8 +43,9 @@
                             this.$router.push('/coupons');
                         })
                         .catch((err) => {
-                            // eslint-disable-next-line no-console
-                            console.log(err.response);
+                            const errors = [];
+                            err.response.data.forEach(error => errors.push(error.message));
+                            this.$store.commit("setErrors", errors);
                         });
                 }
                 else {

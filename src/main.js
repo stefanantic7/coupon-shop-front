@@ -24,6 +24,9 @@ const store = new Vuex.Store({
         },
         setErrors(state, errors) {
             state.errors = errors
+        },
+        clearErrors(state) {
+            state.errors = []
         }
     }
 });

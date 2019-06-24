@@ -14,7 +14,7 @@
                 <input type="text" class="form-control" id="username" v-model="username" placeholder="Enter username">
             </div>
             <div class="form-group">
-                <label for="password">Last name:</label>
+                <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" v-model="password" placeholder="Enter password">
             </div>
             <div class="form-group">
@@ -65,6 +65,11 @@
                     )
                     .then(() => {
                         this.$router.push('/coupons');
+                    })
+                    .catch((err) => {
+                        const errors = [];
+                        err.response.data.forEach(error => errors.push(error.message));
+                        this.$store.commit("setErrors", errors);
                     });
             },
 

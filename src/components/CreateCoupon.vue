@@ -91,6 +91,11 @@
                         // eslint-disable-next-line no-console
                         console.log(response.data)
                         this.$router.push('/coupons');
+                    })
+                    .catch((err) => {
+                        const errors = [];
+                        err.response.data.forEach(error => errors.push(error.message));
+                        this.$store.commit("setErrors", errors);
                     });
             },
             loadShops() {
@@ -103,9 +108,12 @@
                         }
                     )
                     .then((response) => {
-                        // eslint-disable-next-line no-console
-                        console.log(response.data[0].id);
                         this.shops = response.data;
+                    })
+                    .catch((err) => {
+                        const errors = [];
+                        err.response.data.forEach(error => errors.push(error.message));
+                        this.$store.commit("setErrors", errors);
                     });
             }
         },

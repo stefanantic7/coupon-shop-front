@@ -27,6 +27,9 @@
         <div class="container">
             <div class="text-right">{{ fullName }}</div>
         </div>
+        <div class="container mt-3">
+            <errors></errors>
+        </div>
         <div class="container">
             <router-view></router-view>
         </div>
@@ -37,11 +40,12 @@
 
     import axios from "axios";
     import {apiBase} from "./main";
+    import Errors from "./components/Errors";
 
     export default {
         name: "app",
 
-        components: {},
+        components: {Errors},
 
         data() {
             return {
@@ -102,6 +106,11 @@
                     .catch(() => {
                         this.logout()
                     });
+            }
+        },
+        watch: {
+            '$route' () {
+                this.$store.commit("clearErrors");
             }
         }
     };

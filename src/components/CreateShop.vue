@@ -38,7 +38,12 @@
                     )
                     .then(() => {
                         this.$router.push('/coupons');
-                    });
+                    })
+                    .catch((err) => {
+                        const errors = [];
+                        err.response.data.forEach(error => errors.push(error.message));
+                        this.$store.commit("setErrors", errors);
+                    })
             },
 
         },
