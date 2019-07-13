@@ -87,8 +87,7 @@
 
             }
         },
-
-        created() {
+        beforeCreate() {
             const token = localStorage.getItem("token");
             if (!token) {
                 this.$router.push('/login');
